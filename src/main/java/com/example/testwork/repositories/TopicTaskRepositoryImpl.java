@@ -61,9 +61,4 @@ public class TopicTaskRepositoryImpl implements TopicTaskRepository {
         return DataAccessUtils.uniqueResult(tasks);
 
     }
-
-    public List<TopicTask> getAllTasksDesk() {
-        String sql = "SELECT * FROM topic_of_tasks ORDER BY id DESC";
-        return jdbcTemplate.query(sql, new TopicTaskMapper());
-    }
 }
