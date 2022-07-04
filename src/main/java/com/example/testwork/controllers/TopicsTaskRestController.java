@@ -42,7 +42,7 @@ public class TopicsTaskRestController {
             topicTaskRepository.saveTopicTask(topicTask);
             return ok().build();
         }
-            throw new TopicTaskAlreadyExistsException("a task with this name already exists");
+        throw new TopicTaskAlreadyExistsException("a task with this name already exists");
     }
 
     @PutMapping("/topics/{id}")

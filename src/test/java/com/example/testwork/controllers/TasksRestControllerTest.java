@@ -1,12 +1,11 @@
 package com.example.testwork.controllers;
 
+import com.example.testwork.config.IntegrationTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class TasksRestControllerTest {
+class TasksRestControllerTest extends IntegrationTest {
 
     @BeforeEach
     void setUp() {
