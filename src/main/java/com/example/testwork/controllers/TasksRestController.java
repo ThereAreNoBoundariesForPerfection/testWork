@@ -6,6 +6,8 @@ import com.example.testwork.exeption.TopicTaskNotFoundException;
 import com.example.testwork.models.Task;
 import com.example.testwork.repositories.TaskRepositoryImpl;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
+@Api(description = "controller witch show work swagger")
 public class TasksRestController {
     private final TaskRepositoryImpl taskRepository;
 
@@ -24,11 +27,13 @@ public class TasksRestController {
     }
 
     @GetMapping("/tasks")
+    @ApiOperation("get all tasks")
     public List<Task> getAllTasks() {
         return taskRepository.getAllTasks();
     }
 
     @GetMapping("/tasks/{id}")
+    @ApiOperation("get one tasks by id")
     public Task getTaskById(@PathVariable Long id) {
         Task task = taskRepository.getTask(id);
         if (task != null) {
@@ -38,6 +43,7 @@ public class TasksRestController {
     }
 
     @PostMapping("/tasks")
+    @ApiOperation("create new tasks")
     public ResponseEntity<Void> newTask(@RequestBody Task task) {
         if (taskRepository.getTaskByName(task.getName()) == null) {
             taskRepository.saveTask(task);
@@ -47,6 +53,7 @@ public class TasksRestController {
     }
 
     @PutMapping("/tasks/{id}")
+    @ApiOperation("update task by id")
     public ResponseEntity<Void> updateTask(@RequestBody Task task, @PathVariable Long id) {
 
         Task anotherTask = taskRepository.getTask(id);
@@ -63,6 +70,7 @@ public class TasksRestController {
     }
 
     @DeleteMapping("/tasks/{id}")
+    @ApiOperation("delete tasks by id")
     public ResponseEntity<Void> deleteTopicTaskById(@PathVariable Long id) {
         taskRepository.deleteTask(id);
         return ok().build();

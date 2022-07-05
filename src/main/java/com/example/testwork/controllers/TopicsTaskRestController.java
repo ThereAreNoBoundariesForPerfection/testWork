@@ -4,6 +4,8 @@ import com.example.testwork.exeption.TopicTaskAlreadyExistsException;
 import com.example.testwork.exeption.TopicTaskNotFoundException;
 import com.example.testwork.models.TopicTask;
 import com.example.testwork.repositories.TopicTaskRepositoryImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
+@Api(description = "controller witch show work swagger")
 public class TopicsTaskRestController {
     private final TopicTaskRepositoryImpl topicTaskRepository;
 
@@ -22,12 +25,14 @@ public class TopicsTaskRestController {
     }
 
     @GetMapping("/topics")
+    @ApiOperation("get all topics")
     public List<TopicTask> getAllTasks() {
         return topicTaskRepository.getAllTopicTask();
     }
 
 
     @GetMapping("topics/{id}")
+    @ApiOperation("get topic by id")
     public TopicTask getTopicTaskById(@PathVariable Long id) {
         TopicTask topicTask = topicTaskRepository.getTopicTask(id);
         if (topicTask != null) {
@@ -37,6 +42,7 @@ public class TopicsTaskRestController {
     }
 
     @PostMapping("/topics")
+    @ApiOperation("create topic")
     public ResponseEntity<Void> newTopicTask(@RequestBody TopicTask topicTask) {
         if (topicTaskRepository.getTopicTaskByName(topicTask.getName()) == null) {
             topicTaskRepository.saveTopicTask(topicTask);
@@ -46,6 +52,7 @@ public class TopicsTaskRestController {
     }
 
     @PutMapping("/topics/{id}")
+    @ApiOperation("update topic by id")
     public ResponseEntity<Void> updateTopicTask(@RequestBody TopicTask topicTask, @PathVariable Long id) {
 
         TopicTask anotherTopicTask = topicTaskRepository.getTopicTask(id);
@@ -60,6 +67,7 @@ public class TopicsTaskRestController {
 
 
     @DeleteMapping("/topics/{id}")
+    @ApiOperation("delete topic by id")
     public ResponseEntity<Void> deleteTopicTaskById(@PathVariable Long id) {
         topicTaskRepository.deleteTopicTask(id);
         return ok().build();

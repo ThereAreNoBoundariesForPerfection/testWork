@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.flywaydb', name: 'flyway-core', version: '8.5.12'
+    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

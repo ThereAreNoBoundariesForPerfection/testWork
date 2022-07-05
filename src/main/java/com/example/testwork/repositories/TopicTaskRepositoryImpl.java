@@ -59,6 +59,5 @@ public class TopicTaskRepositoryImpl implements TopicTaskRepository {
 
         List<TopicTask> tasks = jdbcTemplate.query(sql, new TopicTaskMapper(), name);
         return DataAccessUtils.uniqueResult(tasks);
-
     }
 }
