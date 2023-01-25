@@ -1,14 +1,21 @@
 version: '3'
+volumes:
+  postgres_volume:
 services:
   postgres:
     image: 'postgres:12'
     container_name: 'java-postgres'
+    restart: 'always'
     environment:
+        - 'TZ=Europe/Kyiv'
         - 'POSTGRES_USER=postgres'
         - 'POSTGRES_PASSWORD=2222222222'
         - 'POSTGRES_DB=new'
+    volumes:
+        - 'postgres_volume:/var/lib/postgresql/data'
   app:
     build: ./
     container_name: 'java-app'
+    restart: 'always'
     ports:
       - '8080:8080'

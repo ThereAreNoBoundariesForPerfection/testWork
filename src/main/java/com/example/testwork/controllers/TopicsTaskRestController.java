@@ -15,7 +15,7 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@Api(description = "controller witch show work swagger")
+@Api("controller witch show work swagger")
 public class TopicsTaskRestController {
     private final TopicTaskRepositoryImpl topicTaskRepository;
 
